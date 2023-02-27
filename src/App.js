@@ -1,67 +1,27 @@
-import { useEffect, useState } from "react";
-import uuid from "react-uuid";
-import { addNewMeal, getAllMeals } from "./api/meals/meals";
-
-const newMeal = {
-  id: uuid(),
-  name: "Pizza",
-  price: 10.22,
-  description: "An italian pizza!",
-  category: "Pizza",
-  image:
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScsK6z4F-hDZjOU71zr8qcZZ7QYCrkNi2lN9FrNvxhLn5XIWFL&s",
-};
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import MenuPage from "./pages/MenuPage";
+import ProfilePage from "./pages/ProfilePage";
+import LoginPage from "./pages/LoginPage";
+import PagesLayout from "./pages/PagesLayout";
+import AdminPage from "./pages/AdminPage";
+import AboutPage from "./pages/AboutPage";
 
 function App() {
-  const [mealsList, setmMealsList] = useState();
-
-  const getMeals = async () => {
-    const response = await getAllMeals();
-
-    try {
-      let mealsArr = [];
-      for (const key in response.data) {
-        mealsArr.push({
-          id: response.data[key].id,
-          name: response.data[key].name,
-          description: response.data[key].description,
-          price: response.data[key].price,
-          image: response.data[key].image,
-          category: response.data[key].category,
-        });
-      }
-      setmMealsList(mealsArr);
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
-
-  useEffect(() => {
-    getMeals();
-    // addNewMeal(newMeal);
-  }, []);
-
   return (
     <div className="App">
-      <h1>Food order app</h1>
-      {mealsList && (
-        <ul>
-          {mealsList.map((item) => {
-            return (
-              <li key={item.id}>
-                <p>{item.name}</p>
-                <p>{item.price}</p>
-                <p>{item.description}</p>
-                <img
-                  src={item.image}
-                  style={{ width: "100px" }}
-                  alt={item.name}
-                />
-              </li>
-            );
-          })}
-        </ul>
-      )}
+      <Router>
+        <Routes>
+          <Route element={<PagesLayout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/menu" element={<MenuPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/admin" element={<AdminPage />} />
+          </Route>
+        </Routes>
+      </Router>
     </div>
   );
 }
