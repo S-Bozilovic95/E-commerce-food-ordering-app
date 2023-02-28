@@ -5,7 +5,7 @@ const PagesLayout = () => {
   return (
     <>
       <MainNavigation />
-      <div className="page-layout">
+      <div className="container">
         <Outlet />
       </div>
     </>

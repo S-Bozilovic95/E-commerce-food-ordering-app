@@ -5,19 +5,32 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding: 0;
+  padding: 50px 0px 0px;
   box-sizing: border-box;
+  background-color: #f5f3f4;
+  scroll-behavior: smooth;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0px;
+}
 
-.page-layout {
+p {
+  margin: 0px;
+}
+.container {
   /* max-width: 1350px;
   width: 100%;
   margin: auto; */
-  width: min(100% - 15px, 1350px);
+  width: min(100% - 20px, 1600px);
   margin-inline: auto;
 }
