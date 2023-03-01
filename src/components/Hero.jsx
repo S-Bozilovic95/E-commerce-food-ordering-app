@@ -16,7 +16,7 @@ const Hero = () => {
         </h1>
         <p>
           Enjoy the tasty food of the world's most famous cuisines. With the
-          fastest delivery in the town, fresh and delicious order is guaranteed
+          fastest delivery in the town, fresh and delicious order is guaranteed!
         </p>
       </div>
     </div>

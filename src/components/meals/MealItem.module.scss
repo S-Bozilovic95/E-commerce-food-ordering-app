@@ -30,7 +30,7 @@
       padding: 8px 10px 4px 8px;
       border-radius: 100%;
       margin-bottom: 20px;
-      animation: scaleDown 0.25s linear forwards;
+      animation: scaleDown 0.2s linear forwards;
 
       i {
         color: white !important;
@@ -38,7 +38,7 @@
       }
 
       &:hover {
-        animation: scaleUp 0.25s linear forwards;
+        animation: scaleUp 0.1s linear forwards;
         cursor: pointer;
       }
     }
@@ -73,10 +73,10 @@
     width: 50%;
     height: auto;
     filter: drop-shadow(0 0 0.7rem rgba(0, 0, 0, 0.568));
-    animation: scaleDown 0.25s linear forwards;
+    animation: scaleDown 0.2s linear forwards;
 
     &:hover {
-      animation: scaleUp 0.25s linear forwards;
+      animation: scaleUp 0.1s linear forwards;
     }
   }
 }

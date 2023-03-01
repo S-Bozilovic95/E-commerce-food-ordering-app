@@ -1,0 +1,70 @@
+.category-item {
+  max-width: 110px;
+  width: 100%;
+  background-color: white;
+  text-align: center;
+  padding: 15px 0px;
+  margin: 10px 20px;
+  border-radius: 10px;
+  filter: drop-shadow(-5px 5px 5px rgba(0, 0, 0, 0.301));
+  transition: 0.1s ease-out;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(220, 38, 38);
+    transition: 0.1s ease-in;
+  }
+
+  &:hover span {
+    background-color: white;
+
+    img {
+      filter: invert(47%) sepia(76%) saturate(6194%) hue-rotate(346deg)
+        brightness(88%) contrast(95%);
+    }
+  }
+
+  &:hover p {
+    color: white;
+    transition: 0.25s ease-in;
+  }
+
+  span {
+    background-color: rgb(220, 38, 38);
+    display: inline-block;
+    margin: auto;
+    padding: 5px 8px;
+    border-radius: 100%;
+    margin-bottom: 15px;
+
+    img {
+      width: 30px;
+      filter: invert(91%) sepia(2%) saturate(1111%) hue-rotate(249deg)
+        brightness(111%) contrast(91%);
+    }
+  }
+
+  p {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: rgb(107, 105, 105);
+  }
+
+  &__active {
+    background-color: rgb(220, 38, 38);
+
+    span {
+      background-color: white;
+
+      img {
+        filter: invert(47%) sepia(76%) saturate(6194%) hue-rotate(346deg)
+          brightness(88%) contrast(95%);
+      }
+    }
+
+    p {
+      color: white;
+      transition: 0.25s ease-in;
+    }
+  }
+}
