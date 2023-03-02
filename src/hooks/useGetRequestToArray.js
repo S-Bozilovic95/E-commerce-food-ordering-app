@@ -70,6 +70,7 @@ const useGetRequestToArray = (getType) => {
             newArray.push({
               id: response.data[key].id,
               name: response.data[key].name,
+              image: response.data[key].image,
             });
           }
           setItemsArray(newArray);

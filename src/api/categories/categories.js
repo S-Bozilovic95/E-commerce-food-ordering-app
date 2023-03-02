@@ -7,7 +7,7 @@ export const getAllCategories = () => {
   });
 };
 
-export const addNewMeal = (categoryData) => {
+export const addNewCategory = (categoryData) => {
   return request({
     url: "/categories.json",
     method: "post",
