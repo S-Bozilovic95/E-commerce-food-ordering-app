@@ -3,12 +3,10 @@ import MainNavigation from "../components/MainNavigation";
 
 const PagesLayout = () => {
   return (
-    <>
+    <div>
       <MainNavigation />
-      <div className="container">
-        <Outlet />
-      </div>
-    </>
+      <Outlet />
+    </div>
   );
 };
 

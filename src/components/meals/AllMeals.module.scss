@@ -4,10 +4,10 @@
   padding: 20px;
 
   ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 40px;
-    padding: 0px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
   }
 }
 
@@ -15,11 +15,6 @@
 @media (max-width: 1024px) {
   .meals {
     background-color: rgb(246, 238, 233);
-    border-radius: 10px;
-    padding: 20px;
-
-    ul {
-      gap: 40px;
-    }
+    padding: 10px;
   }
 }

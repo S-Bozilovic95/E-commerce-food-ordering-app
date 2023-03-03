@@ -1,11 +1,21 @@
 .categories {
-  padding: 20px;
+  padding: 20px 0px;
 
   .swiperBox {
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 800px;
+    max-width: 1000px;
     width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .categories {
+    padding: 10px 0px;
+
+    .swiperBox {
+      max-width: 100%;
+    }
   }
 }

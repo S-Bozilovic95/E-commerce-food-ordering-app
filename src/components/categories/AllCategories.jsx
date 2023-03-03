@@ -35,7 +35,13 @@ const AllCategories = () => {
             delay: 3000,
           }}
           breakpoints={{
+            280: {
+              slidesPerView: 2.1,
+            },
             320: {
+              slidesPerView: 2.5,
+            },
+            500: {
               slidesPerView: 3,
             },
             768: {
