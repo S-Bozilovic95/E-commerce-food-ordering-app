@@ -26,7 +26,10 @@ const MainNavigation = () => {
             <h4>BestRest</h4>
           </div>
 
-          <div className={classes["profile-mobile"]} onClick={dropHandler}>
+          <div
+            className={classes["profile-mobile"]}
+            onClick={() => setDrop(false)}
+          >
             <i>
               <MdAccountCircle />
             </i>
