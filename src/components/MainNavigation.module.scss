@@ -7,12 +7,13 @@
   right: 0px;
   left: 0px;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.658);
-  backdrop-filter: blur(10px);
+  background-color: rgba(252, 252, 252, 0.63);
   z-index: 10;
-  filter: drop-shadow(0px 5px 4px rgba(0, 0, 0, 0.233));
+  border-bottom: 0.5px solid rgba(81, 81, 81, 0.178);
+  // filter: drop-shadow(0px 3px 4px rgba(0, 0, 0, 0.432));
 
   .content {
+    backdrop-filter: blur(10px);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -65,10 +66,12 @@
       position: relative;
       transition: 0.2s ease-out;
       margin: 10px;
+      animation: scaleDown 0.2s linear forwards;
 
       &:hover {
         color: rgb(220, 38, 37);
         transition: 0.2s ease-in;
+        animation: scaleUp 0.1s linear forwards;
       }
     }
 
@@ -79,28 +82,36 @@
       padding: 2px 6px;
       border-radius: 100%;
       color: white;
-      transition: 0.2s ease-out;
+      transition: 0.1s ease-out;
+      animation: scaleDown 0.2s linear forwards;
 
       &:hover {
         cursor: pointer;
         background-color: rgb(220, 38, 37);
-        transition: 0.2s ease-in;
+        transition: 0.1s ease-in;
+        animation: scaleUp 0.1s linear forwards;
       }
     }
   }
 
   .profile {
     margin-top: 5px;
+    animation: scaleDown 0.2s linear forwards;
+
+    &:hover {
+      animation: scaleUp 0.1s linear forwards;
+    }
+
     i {
       font-size: 2.2rem;
       color: rgb(81, 81, 81);
-      transition: 0.2s ease-out;
+      transition: 0.1s ease-out;
     }
 
     &:hover i {
       cursor: pointer;
       color: rgb(220, 38, 37);
-      transition: 0.2s ease-in;
+      transition: 0.1s ease-in;
     }
   }
 }
@@ -136,8 +147,10 @@
         height: 35px;
         padding: 0px 0px;
         cursor: pointer;
+        animation: scaleDown 0.1s linear forwards;
 
         &:hover {
+          animation: scaleUp 0.2s linear forwards;
           span {
             transition: 0.15s ease-in;
             background-color: rgb(220, 38, 37);
@@ -146,7 +159,7 @@
 
         span {
           width: 27px;
-          margin: 7px;
+          margin: 7px 0px;
           height: 2px;
           border-radius: 10px;
           display: block;
@@ -175,16 +188,22 @@
       .profile-mobile {
         display: block;
         margin-bottom: -5px;
+        animation: scaleDown 0.2s linear forwards;
+
+        &:hover {
+          animation: scaleUp 0.1s linear forwards;
+        }
+
         i {
           font-size: 2.1rem;
           color: rgb(81, 81, 81);
-          transition: 0.2s ease-out;
+          transition: 0.1s ease-out;
         }
 
         &:hover i {
           cursor: pointer;
           color: rgb(220, 38, 37);
-          transition: 0.2s ease-in;
+          transition: 0.1s ease-in;
         }
       }
     }
