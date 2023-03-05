@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import classes from "./MainNavigation.module.scss";
-import logo from "../assets/logo-chef.png";
+import logo from "../assets/fried.svg";
 import { RiShoppingBasket2Fill } from "react-icons/ri";
 import { MdAccountCircle } from "react-icons/md";
 import { useState } from "react";
@@ -23,7 +23,9 @@ const MainNavigation = () => {
           </div>
           <div className={classes.logo}>
             <img src={logo} alt="logo" />
-            <h4>BestRest</h4>
+            <h4>
+              <span>Crisspy</span>Food
+            </h4>
           </div>
 
           <div
