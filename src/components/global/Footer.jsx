@@ -1,5 +1,5 @@
 import classes from "./Footer.module.scss";
-import logo from "../assets/fried.svg";
+import logo from "../../assets/fried.svg";
 import {
   FaGithub,
   FaLinkedin,
@@ -15,7 +15,7 @@ const Footer = () => {
         <div className={classes.logo}>
           <img src={logo} alt="logo" />
           <h4>
-            <span>Crisspy</span>Food
+            <span>Crispy</span>Land
           </h4>
         </div>
         <div className={classes["link-box"]}>

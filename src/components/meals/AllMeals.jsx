@@ -4,6 +4,7 @@ import { filteredMeals, setInitialMeals } from "../../store/mealSlice";
 import classes from "./AllMeals.module.scss";
 import MealItem from "./MealItem";
 import useGetRequestToArray from "../../hooks/useGetRequestToArray";
+import Placeholder from "../UI/Placeholder";
 
 const AllMeals = () => {
   const mealsData = useGetRequestToArray("meals");
@@ -24,7 +25,7 @@ const AllMeals = () => {
           })}
         </ul>
       )}
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <Placeholder num={16} type={"meals"} />}
     </div>
   );
 };

@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 import useGetRequestToArray from "../../hooks/useGetRequestToArray";
 import { useDispatch, useSelector } from "react-redux";
 import { categoryList, setCategoryList } from "../../store/categorySlice";
+import Placeholder from "../UI/Placeholder";
 
 const AllCategories = () => {
   const [currentCategoryId, setCurrentCategoryId] = useState(0);
@@ -62,7 +63,7 @@ const AllCategories = () => {
           })}
         </Swiper>
       )}
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <Placeholder num={5} type={"category"} />}
     </div>
   );
 };
