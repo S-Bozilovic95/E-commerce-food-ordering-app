@@ -4,7 +4,9 @@ import AllMeals from "../components/meals/AllMeals";
 const MenuPage = () => {
   return (
     <>
-      <h1>MenuPage</h1>
+      <h4 className="title">
+        Our<span>Menu</span>
+      </h4>
       <AllCategories />
       <AllMeals />
     </>

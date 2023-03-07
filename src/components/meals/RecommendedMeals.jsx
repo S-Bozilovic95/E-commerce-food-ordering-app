@@ -40,14 +40,16 @@ const RecommendedMeals = () => {
 
   return (
     <div className={classes.recommended}>
-      <h4>BestSellers</h4>
+      <h4>
+        Best<span>Sellers</span>
+      </h4>
       {!isLoading && recommended.length > 0 && (
         <Swiper
           className={classes.swiperBox}
           modules={[Pagination, Autoplay]}
           pagination={{ clickable: true }}
           autoplay={{
-            delay: 3000,
+            delay: 3500,
           }}
           breakpoints={{
             250: {
@@ -85,9 +87,3 @@ const RecommendedMeals = () => {
 };
 
 export default RecommendedMeals;
-
-// {!isLoading ? (
-//   <MealItem key={item.id} meal={item} />
-// ) : (
-//   <Placeholder num={1} type="best-seller" />
-// )}

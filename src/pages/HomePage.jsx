@@ -8,6 +8,9 @@ const HomePage = () => {
     <>
       <Hero />
       <RecommendedMeals />
+      <h4 className="title">
+        Our<span>Menu</span>
+      </h4>
       <AllCategories />
       <AllMeals />
     </>
