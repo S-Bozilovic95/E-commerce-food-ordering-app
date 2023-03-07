@@ -5,6 +5,7 @@ import classes from "./AllMeals.module.scss";
 import MealItem from "./MealItem";
 import useGetRequestToArray from "../../hooks/useGetRequestToArray";
 import Placeholder from "../UI/Placeholder";
+import NoResult from "../UI/NoResult";
 
 const AllMeals = () => {
   const mealsData = useGetRequestToArray("meals");
@@ -26,6 +27,7 @@ const AllMeals = () => {
         </ul>
       )}
       {isLoading && <Placeholder num={16} type={"meals"} />}
+      {mealsList.length === 0 && !isLoading && <NoResult />}
     </div>
   );
 };

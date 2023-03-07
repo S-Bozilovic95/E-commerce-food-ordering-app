@@ -13,7 +13,6 @@ const CategoryItem = ({
   const filterHandler = () => {
     dispatch(setFilteredMeals(category.name));
     currentCategoryHandler(category.id);
-    console.log(category.name);
   };
 
   return (

@@ -1,0 +1,54 @@
+.recommended {
+  text-align: center;
+  margin: 30px 0px;
+
+  .swiperBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: 10px;
+    background-color: rgb(92, 88, 88);
+
+    li {
+      margin: auto;
+    }
+  }
+
+  h4 {
+    font-size: 2rem;
+    color: rgb(206, 77, 8);
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+
+    &::after {
+      //   position: absolute;
+      //   bottom: 0;
+      content: "";
+      margin: auto;
+      display: block;
+      width: 100%;
+      background-color: rgb(81, 81, 81);
+      height: 2px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .recommended {
+    text-align: center;
+    margin: 30px 0px;
+
+    .swiperBox {
+      max-width: 1400px;
+      width: 100%;
+
+      li {
+        width: 80%;
+      }
+    }
+  }
+}

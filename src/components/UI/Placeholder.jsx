@@ -7,7 +7,9 @@ const Placeholder = (props) => {
       className={
         props.type === "meals"
           ? classes["placeholder-meals"]
-          : classes["placeholder-category"]
+          : props.type === "category"
+          ? classes["placeholder-category"]
+          : classes["placeholder-best-seller"]
       }
     >
       {[...Array(props.num)].map((item, index) => {
