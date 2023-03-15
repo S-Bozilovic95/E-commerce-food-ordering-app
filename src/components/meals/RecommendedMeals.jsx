@@ -2,12 +2,16 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
-import { recommendedMeals, setRecommendedMeals } from "../../store/mealSlice";
+import {
+  getMealsData,
+  loading,
+  recommendedMeals,
+  setRecommendedMeals,
+} from "../../store/mealSlice";
 import MealItem from "./MealItem";
 import classes from "./RecommendedMeals.module.scss";
 import "swiper/css";
 import "swiper/css/pagination";
-import useGetRequestToArray from "../../hooks/useGetRequestToArray";
 import Placeholder from "../UI/Placeholder";
 
 const dummyRecommended = [
@@ -21,22 +25,12 @@ const dummyRecommended = [
 const RecommendedMeals = () => {
   const dispatch = useDispatch();
   const recommended = useSelector(recommendedMeals);
-  const mealsData = useGetRequestToArray("meals");
-  const isLoading = mealsData.isLoading;
+  const isLoading = useSelector(loading);
 
   useEffect(() => {
-    if (recommended.length !== 0) {
-      dispatch(setRecommendedMeals(dummyRecommended));
-    } else {
-      const timer = setTimeout(() => {
-        dispatch(setRecommendedMeals(dummyRecommended));
-      }, [500]);
-
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-  }, [dispatch, recommended.length]);
+    dispatch(setRecommendedMeals(dummyRecommended));
+    dispatch(getMealsData());
+  }, [dispatch]);
 
   return (
     <div className={classes.recommended}>

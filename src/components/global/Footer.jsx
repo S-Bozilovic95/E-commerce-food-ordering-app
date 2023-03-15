@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div className={classes.footer}>
-      <div className={`container  ${classes.content}`}>
+      <div className={classes.content}>
         <div className={classes.logo}>
           <img src={logo} alt="logo" />
           <h4>

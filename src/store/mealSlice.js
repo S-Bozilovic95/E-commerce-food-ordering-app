@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getAllMeals } from "../api/meals/meals";
 
 const mealsSlice = createSlice({
   name: "meals",
@@ -6,6 +7,7 @@ const mealsSlice = createSlice({
     initialMealsList: [],
     filteredMeals: [],
     recommendedMeals: [],
+    loading: null,
   },
 
   reducers: {
@@ -38,37 +40,45 @@ const mealsSlice = createSlice({
 
       state.recommendedMeals = recommendedArr;
     },
+    setLoading(state, action) {
+      state.loading = action.payload;
+    },
   },
 });
 
 // moze i ovakav pristup, ali lakse je preko hook-a
-// export const getMealsData = () => {
-//   return async (dispatch) => {
-//     try {
-//       dispatch(setIsLoading(true));
-//       const response = await getAllMeals();
-//       let newArray = [];
-//       for (const key in response.data) {
-//         newArray.push({
-//           id: response.data[key].id,
-//           name: response.data[key].name,
-//           description: response.data[key].description,
-//           price: response.data[key].price,
-//           image: response.data[key].image,
-//           category: response.data[key].category,
-//         });
-//       }
-//       dispatch(setInitialMeals(newArray));
-//       dispatch(setIsLoading(false));
-//     } catch (err) {
-//       console.log(err.message);
-//     }
-//   };
-// };
+export const getMealsData = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoading(true));
+      const response = await getAllMeals();
+      let newArray = [];
+      for (const key in response.data) {
+        newArray.push({
+          id: response.data[key].id,
+          name: response.data[key].name,
+          description: response.data[key].description,
+          price: response.data[key].price,
+          image: response.data[key].image,
+          category: response.data[key].category,
+        });
+      }
+      dispatch(setInitialMeals(newArray));
+      dispatch(setLoading(false));
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+};
 
-export const { setFilteredMeals, setInitialMeals, setRecommendedMeals } =
-  mealsSlice.actions;
+export const {
+  setFilteredMeals,
+  setInitialMeals,
+  setRecommendedMeals,
+  setLoading,
+} = mealsSlice.actions;
 export const filteredMeals = (state) => state.meals.filteredMeals;
 export const initialMealsList = (state) => state.meals.initialMealsList;
 export const recommendedMeals = (state) => state.meals.recommendedMeals;
+export const loading = (state) => state.meals.loading;
 export default mealsSlice;

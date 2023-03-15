@@ -1,21 +1,19 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filteredMeals, setInitialMeals } from "../../store/mealSlice";
+import { filteredMeals, getMealsData, loading } from "../../store/mealSlice";
 import classes from "./AllMeals.module.scss";
 import MealItem from "./MealItem";
-import useGetRequestToArray from "../../hooks/useGetRequestToArray";
 import Placeholder from "../UI/Placeholder";
 import NoResult from "../UI/NoResult";
 
 const AllMeals = () => {
-  const mealsData = useGetRequestToArray("meals");
-  const isLoading = mealsData.isLoading;
+  const isLoading = useSelector(loading);
   const mealsList = useSelector(filteredMeals);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setInitialMeals(mealsData.itemsArray));
-  }, [mealsData.itemsArray, dispatch]);
+    dispatch(getMealsData());
+  }, [dispatch]);
 
   return (
     <div className={classes.meals}>
