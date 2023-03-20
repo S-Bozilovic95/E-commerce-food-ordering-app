@@ -28,8 +28,13 @@ const RecommendedMeals = () => {
   const isLoading = useSelector(loading);
 
   useEffect(() => {
-    dispatch(setRecommendedMeals(dummyRecommended));
-    dispatch(getMealsData());
+    const timer = setTimeout(() => {
+      dispatch(setRecommendedMeals(dummyRecommended));
+    }, 500);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [dispatch]);
 
   return (
@@ -54,7 +59,6 @@ const RecommendedMeals = () => {
               slidesPerView: 1,
               spaceBetween: 10,
             },
-
             768: {
               slidesPerView: 2,
             },
@@ -66,13 +70,14 @@ const RecommendedMeals = () => {
             },
           }}
         >
-          {recommended.map((item) => {
-            return (
-              <SwiperSlide key={item.id}>
-                <MealItem key={item.id} meal={item} />
-              </SwiperSlide>
-            );
-          })}
+          {!isLoading &&
+            recommended?.map((item) => {
+              return (
+                <SwiperSlide key={item.id}>
+                  <MealItem key={item.id} meal={item} />
+                </SwiperSlide>
+              );
+            })}
         </Swiper>
       )}
       {isLoading && <Placeholder num={4} type="best-seller" />}
