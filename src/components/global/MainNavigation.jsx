@@ -13,8 +13,10 @@ const MainNavigation = () => {
   };
 
   return (
-    <div className={`${classes.navigation} ${drop && classes["active-menu"]}`}>
-      <div className={`${classes.content} container`}>
+    <>
+      <div
+        className={`${classes.navigation} ${drop && classes["active-menu"]}`}
+      >
         <div className={classes["logo-box"]}>
           <div className={classes.menu} onClick={dropHandler}>
             <span></span>
@@ -58,8 +60,12 @@ const MainNavigation = () => {
           </i>
         </div>
       </div>
-      <div className={classes.overlay} onClick={dropHandler}></div>
-    </div>
+      <div
+        className={classes.overlay}
+        style={{ display: drop ? "block" : "none" }}
+        onClick={dropHandler}
+      ></div>
+    </>
   );
 };
 

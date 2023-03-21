@@ -1,5 +1,5 @@
 import AllCategories from "../components/categories/AllCategories";
-import Hero from "../components/Hero";
+import Hero from "../components/global/Hero";
 import AllMeals from "../components/meals/AllMeals";
 import RecommendedMeals from "../components/meals/RecommendedMeals";
 

@@ -8,15 +8,11 @@
   background-color: rgba(252, 252, 252, 0.747);
   z-index: 10;
   border-bottom: 0.5px solid rgba(81, 81, 81, 0.178);
-  // filter: drop-shadow(0px 3px 4px rgba(0, 0, 0, 0.432));
-
-  .content {
-    backdrop-filter: blur(10px);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-  }
+  padding: 10px 20px;
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   .logo-box {
     display: flex;
@@ -125,22 +121,12 @@
 // responsive
 @media (max-width: 1024px) {
   .navigation {
-    .content {
-      padding-bottom: 15px;
-      max-height: 38px;
-      overflow: hidden;
-      transition: 0.25s ease-out;
-    }
-
-    .overlay {
-      content: "";
-      display: none;
-      width: 100%;
-      height: 100vh;
-      position: fixed;
-      z-index: 5;
-      background-color: rgba(0, 0, 0, 0.452);
-    }
+    flex-direction: column;
+    align-items: flex-start;
+    max-height: 38px;
+    overflow: hidden;
+    transition: 0.25s ease-out;
+    max-height: 60px;
 
     .logo-box {
       width: 100%;
@@ -150,7 +136,7 @@
         display: block;
         z-index: 10;
         width: 30px;
-        height: 35px;
+        height: 30px;
         padding: 0px 0px;
         cursor: pointer;
         animation: scaleDown 0.1s linear forwards;
@@ -193,7 +179,7 @@
 
       .profile-mobile {
         display: block;
-        margin-bottom: -5px;
+        margin-bottom: -10px;
         animation: scaleDown 0.2s linear forwards;
 
         &:hover {
@@ -233,15 +219,21 @@
     }
   }
 
-  .active-menu {
-    .content {
-      max-height: 500px;
-      transition: 0.25s ease-in;
-    }
+  .overlay {
+    content: "";
+    display: none;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    background-color: rgba(0, 0, 0, 0.452);
+  }
 
-    .overlay {
-      display: block;
-    }
+  .active-menu {
+    max-height: 500px;
+    transition: 0.25s ease-in;
 
     .logo-box {
       .menu {
