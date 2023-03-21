@@ -5,15 +5,19 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
-import useGetRequestToArray from "../../hooks/useGetRequestToArray";
 import { useDispatch, useSelector } from "react-redux";
-import { categoryList, setCategoryList } from "../../store/categorySlice";
+import {
+  categoryList,
+  categoryLoading,
+  getCategoryData,
+} from "../../store/categorySlice";
 import Placeholder from "../UI/Placeholder";
 
 const AllCategories = () => {
-  const [currentCategoryId, setCurrentCategoryId] = useState(0);
-  const categoryData = useGetRequestToArray("categories");
-  const isLoading = categoryData.isLoading;
+  const [currentCategoryId, setCurrentCategoryId] = useState(
+    "-NPUaI2VZkeTABnwlTkb"
+  );
+  const isLoading = useSelector(categoryLoading);
   const allCategories = useSelector(categoryList);
   const dispatch = useDispatch();
 
@@ -22,8 +26,8 @@ const AllCategories = () => {
   };
 
   useEffect(() => {
-    dispatch(setCategoryList(categoryData.itemsArray));
-  }, [dispatch, categoryData.itemsArray]);
+    dispatch(getCategoryData());
+  }, [dispatch]);
 
   return (
     <div className={classes.categories}>
@@ -50,7 +54,7 @@ const AllCategories = () => {
             },
           }}
         >
-          {allCategories.map((item) => {
+          {allCategories?.map((item) => {
             return (
               <SwiperSlide key={item.id}>
                 <CategoryItem

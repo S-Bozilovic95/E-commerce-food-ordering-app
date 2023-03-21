@@ -1,13 +1,17 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filteredMeals, getMealsData, loading } from "../../store/mealSlice";
+import {
+  filteredMeals,
+  getMealsData,
+  loadingMeals,
+} from "../../store/mealSlice";
 import classes from "./AllMeals.module.scss";
 import MealItem from "./MealItem";
 import Placeholder from "../UI/Placeholder";
 import NoResult from "../UI/NoResult";
 
 const AllMeals = () => {
-  const isLoading = useSelector(loading);
+  const isLoading = useSelector(loadingMeals);
   const mealsList = useSelector(filteredMeals);
   const dispatch = useDispatch();
 

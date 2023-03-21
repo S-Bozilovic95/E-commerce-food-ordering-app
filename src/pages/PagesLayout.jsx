@@ -6,8 +6,10 @@ const PagesLayout = () => {
   return (
     <div>
       <MainNavigation />
-      <Outlet />
-      <Footer />
+      <div className="container">
+        <Outlet />
+        <Footer />
+      </div>
     </div>
   );
 };

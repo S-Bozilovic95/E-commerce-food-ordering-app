@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
 import {
-  getMealsData,
-  loading,
+  loadingMeals,
   recommendedMeals,
   setRecommendedMeals,
 } from "../../store/mealSlice";
@@ -15,17 +14,19 @@ import "swiper/css/pagination";
 import Placeholder from "../UI/Placeholder";
 
 const dummyRecommended = [
-  { id: "5f84ad33-97f5-7bbd-903e-58fedbaf7454" },
-  { id: "df86d952-f592-ea29-85a0-f73579800d51" },
-  { id: "64dbf9fb-eb03-2cb9-587d-b16919312276" },
-  { id: "5787b9b2-0d8f-c885-57a9-e896986d64bd" },
-  { id: "e9a7a8c3-ea65-4255-d2ee-429e5f1e598a" },
+  { id: "-NPAG6DNWblBM4PGleCU" },
+  { id: "-NPK3My0BvrTxVNOlb7q" },
+  { id: "-NPK3o4VfsxuW0StpKNl" },
+  { id: "-NPK4Q7cZJtFDvQS1L8g" },
+  { id: "-NPocIa9CBshxVY3GEQH" },
 ];
 
 const RecommendedMeals = () => {
   const dispatch = useDispatch();
   const recommended = useSelector(recommendedMeals);
-  const isLoading = useSelector(loading);
+  // ovde is loading za recommended meals a ne za meals
+  // kad se bude dobijalo iz baze (orders pa top 5)
+  const isLoading = useSelector(loadingMeals);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -70,17 +71,18 @@ const RecommendedMeals = () => {
             },
           }}
         >
-          {!isLoading &&
-            recommended?.map((item) => {
-              return (
-                <SwiperSlide key={item.id}>
-                  <MealItem key={item.id} meal={item} />
-                </SwiperSlide>
-              );
-            })}
+          {recommended?.map((item) => {
+            return (
+              <SwiperSlide key={item.id}>
+                <MealItem key={item.id} meal={item} />
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
       )}
-      {isLoading && <Placeholder num={4} type="best-seller" />}
+      {(isLoading || recommended.length <= 0) && (
+        <Placeholder num={4} type="best-seller" />
+      )}
     </div>
   );
 };

@@ -2,9 +2,7 @@
 
 .navigation {
   position: fixed;
-  margin: 0;
   top: 0px;
-  right: 0px;
   left: 0px;
   width: 100%;
   background-color: rgba(252, 252, 252, 0.747);
@@ -18,7 +16,6 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
   }
 
   .logo-box {
@@ -129,7 +126,7 @@
 @media (max-width: 1024px) {
   .navigation {
     .content {
-      padding: 10px 20px;
+      padding-bottom: 15px;
       max-height: 38px;
       overflow: hidden;
       transition: 0.25s ease-out;
@@ -224,11 +221,9 @@
 
       a {
         margin: 10px 0px;
-        // order: 2;
       }
 
       i {
-        // order: 1;
         margin: 10px 0px;
       }
     }

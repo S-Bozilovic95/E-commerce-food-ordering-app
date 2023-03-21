@@ -14,7 +14,7 @@ const MainNavigation = () => {
 
   return (
     <div className={`${classes.navigation} ${drop && classes["active-menu"]}`}>
-      <div className={classes.content}>
+      <div className={`${classes.content} container`}>
         <div className={classes["logo-box"]}>
           <div className={classes.menu} onClick={dropHandler}>
             <span></span>

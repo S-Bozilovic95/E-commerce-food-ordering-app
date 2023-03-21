@@ -46,7 +46,6 @@ const mealsSlice = createSlice({
   },
 });
 
-// moze i ovakav pristup, ali lakse je preko hook-a
 export const getMealsData = () => {
   return async (dispatch) => {
     try {
@@ -55,7 +54,7 @@ export const getMealsData = () => {
       let newArray = [];
       for (const key in response.data) {
         newArray.push({
-          id: response.data[key].id,
+          id: key,
           name: response.data[key].name,
           description: response.data[key].description,
           price: response.data[key].price,
@@ -80,5 +79,5 @@ export const {
 export const filteredMeals = (state) => state.meals.filteredMeals;
 export const initialMealsList = (state) => state.meals.initialMealsList;
 export const recommendedMeals = (state) => state.meals.recommendedMeals;
-export const loading = (state) => state.meals.loading;
+export const loadingMeals = (state) => state.meals.loading;
 export default mealsSlice;
