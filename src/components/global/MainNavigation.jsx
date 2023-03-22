@@ -4,12 +4,20 @@ import logo from "../../assets/fried.svg";
 import { RiShoppingBasket2Fill } from "react-icons/ri";
 import { MdAccountCircle } from "react-icons/md";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { cartItemsList } from "../../store/cartSlice";
 
-const MainNavigation = () => {
+const MainNavigation = ({ showCartHandler }) => {
   const [drop, setDrop] = useState(false);
+  const cartItemsNumber = useSelector(cartItemsList).length;
 
   const dropHandler = () => {
     setDrop((prevDrop) => !prevDrop);
+  };
+
+  const cartShow = () => {
+    showCartHandler(true);
+    setDrop(false);
   };
 
   return (
@@ -50,8 +58,9 @@ const MainNavigation = () => {
           <NavLink to="/about" onClick={dropHandler}>
             About Us
           </NavLink>
-          <i onClick={dropHandler}>
+          <i onClick={cartShow}>
             <RiShoppingBasket2Fill />
+            {cartItemsNumber > 0 && <span>{cartItemsNumber}</span>}
           </i>
         </div>
         <div className={classes["profile"]}>

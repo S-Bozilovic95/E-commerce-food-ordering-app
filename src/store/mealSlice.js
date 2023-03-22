@@ -58,6 +58,7 @@ export const getMealsData = () => {
           name: response.data[key].name,
           description: response.data[key].description,
           price: response.data[key].price,
+          amount: 1,
           image: response.data[key].image,
           category: response.data[key].category,
         });
