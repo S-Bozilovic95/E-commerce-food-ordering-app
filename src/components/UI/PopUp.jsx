@@ -6,10 +6,10 @@ const PopUp = (props) => {
   return (
     <React.Fragment>
       {ReactDOM.createPortal(
-        <div className={classes.overlay} onClick={props.onClose}>
+        <>
+          <div className={classes.overlay} onClick={props.onClose}></div>
           <div className={classes["pop-up"]}>{props.children}</div>
-        </div>,
-
+        </>,
         document.getElementById("pop-up-root")
       )}
     </React.Fragment>

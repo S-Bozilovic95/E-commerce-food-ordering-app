@@ -6,34 +6,33 @@
   height: 100vh;
   z-index: 20;
   background-color: rgba(0, 0, 0, 0.75);
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 0px 20px;
+}
 
-  .pop-up {
-    margin-top: 80px;
-    max-width: 800px;
-    height: 80%;
-    width: 100%;
-    overflow-y: scroll;
-    background-color: #f5f3f4;
-    padding: 1rem;
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    z-index: 30;
-    animation: slide-down 300ms ease-out forwards;
-  }
+.pop-up {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%) !important;
+  max-width: 800px;
+  width: 95%;
+  height: 600px;
+  background-color: #f5f3f4;
+  padding: 20px;
+  overflow-y: scroll;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 30;
+  animation: slide-down 300ms ease-out forwards;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 // responsive
-
 @media (max-width: 1024px) {
-  .overlay {
-    .pop-up {
-      margin-top: 150px;
-      max-width: 100%;
-    }
+  .pop-up {
+    max-width: 100%;
   }
 }
 

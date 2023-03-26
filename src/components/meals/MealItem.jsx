@@ -1,17 +1,15 @@
 import classes from "./MealItem.module.scss";
 import { FaCartPlus, FaEuroSign } from "react-icons/fa";
-import { useDispatch } from "react-redux";
-import { addToCart, removeFromCart } from "../../store/cartSlice";
+import { addNewCartItem } from "../../api/cart/cart";
 
 const MealItem = ({ meal }) => {
-  const dispatch = useDispatch();
-
-  const addMealToCartHandler = (value) => {
-    dispatch(addToCart(value));
-  };
-
-  const removeMealFromCartHandler = (value) => {
-    dispatch(removeFromCart(value));
+  const addItemToCartHandler = async (value) => {
+    try {
+      const response = await addNewCartItem(value);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -20,15 +18,13 @@ const MealItem = ({ meal }) => {
       <div className={classes["text-box"]}>
         <button
           className={classes.button}
-          onClick={addMealToCartHandler.bind(this, meal)}
+          onClick={addItemToCartHandler.bind(this, meal)}
         >
           <i>
             <FaCartPlus />
           </i>
         </button>
-        <h3 onClick={removeMealFromCartHandler.bind(this, meal)}>
-          {meal.name}
-        </h3>
+        <h3>{meal.name}</h3>
         <p>{meal.description}</p>
         <p className={classes.price}>
           <i>

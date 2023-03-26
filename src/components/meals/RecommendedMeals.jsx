@@ -40,7 +40,7 @@ const RecommendedMeals = () => {
 
   return (
     <div className={classes.recommended}>
-      <h4>
+      <h4 className="title">
         Best<span>Sellers</span>
       </h4>
       {!isLoading && recommended.length > 0 && (

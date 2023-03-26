@@ -2,6 +2,10 @@
   text-align: center;
   margin: 30px 0px 50px;
 
+  h4 {
+    margin-bottom: 30px;
+  }
+
   .swiperBox {
     display: flex;
     align-items: center;
@@ -18,33 +22,6 @@
       &:hover {
         background-color: white;
       }
-    }
-  }
-
-  h4 {
-    font-size: 2rem;
-    color: rgb(81, 81, 81);
-    text-align: center;
-    font-weight: 700;
-    margin-bottom: 20px;
-    position: relative;
-    display: inline-block;
-    color: rgb(206, 77, 8);
-
-    span {
-      color: rgb(49, 48, 48);
-    }
-
-    &::after {
-      position: absolute;
-      bottom: 5px;
-      right: 0;
-      z-index: -1;
-      content: "";
-      margin: auto;
-      width: 40%;
-      background-color: rgb(206, 77, 8);
-      height: 10px;
     }
   }
 }
