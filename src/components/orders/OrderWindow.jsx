@@ -1,41 +1,22 @@
-import { useEffect, useState } from "react";
-import { getCartItems } from "../../api/cart/cart";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { cartItemsList, getCartData } from "../../store/cartSlice";
 import PopUp from "../UI/PopUp";
 import OrderItem from "./OrderItem";
 import classes from "./OrderWindow.module.scss";
 
 const OrderWindow = ({ showCartHandler }) => {
-  const [cartItemsList, setCartItemsList] = useState([]);
+  const cartList = useSelector(cartItemsList);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const getCartList = async () => {
-      try {
-        const response = await getCartItems();
-        let newArray = [];
-        for (const key in response.data) {
-          newArray.push({
-            id: key,
-            name: response.data[key].name,
-            description: response.data[key].description,
-            price: response.data[key].price,
-            amount: 1,
-            image: response.data[key].image,
-            category: response.data[key].category,
-          });
-        }
-        setCartItemsList(newArray);
-        console.log(response);
-      } catch (err) {
-        console.log(err.message);
-      }
-    };
-    getCartList();
-  }, []);
+    dispatch(getCartData());
+  }, [dispatch]);
 
   return (
     <PopUp onClose={showCartHandler.bind(this, false)}>
       <div className={classes.orders}>
-        {cartItemsList.map((item) => (
+        {cartList?.map((item) => (
           <OrderItem key={item.id} singleMeal={item} />
         ))}
       </div>

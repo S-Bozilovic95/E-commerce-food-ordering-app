@@ -1,14 +1,25 @@
 import classes from "./MealItem.module.scss";
 import { FaCartPlus, FaEuroSign } from "react-icons/fa";
 import { addNewCartItem } from "../../api/cart/cart";
+import { useDispatch, useSelector } from "react-redux";
+import { cartItemsList, getCartData } from "../../store/cartSlice";
 
 const MealItem = ({ meal }) => {
+  const cartList = useSelector(cartItemsList);
+  const dispatch = useDispatch();
+
   const addItemToCartHandler = async (value) => {
-    try {
-      const response = await addNewCartItem(value);
-      console.log(response);
-    } catch (error) {
-      console.log(error);
+    const existingItem = cartList.find((cartItem) => {
+      return cartItem.id === value.id;
+    });
+
+    if (!existingItem) {
+      try {
+        await addNewCartItem(value);
+        dispatch(getCartData());
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 

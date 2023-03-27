@@ -3,13 +3,14 @@ import classes from "./MainNavigation.module.scss";
 import logo from "../../assets/fried.svg";
 import { RiShoppingBasket2Fill } from "react-icons/ri";
 import { MdAccountCircle } from "react-icons/md";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { cartItemsList } from "../../store/cartSlice";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { cartItemsList, getCartData } from "../../store/cartSlice";
 
 const MainNavigation = ({ showCartHandler }) => {
   const [drop, setDrop] = useState(false);
   const cartItemsNumber = useSelector(cartItemsList).length;
+  const dispatch = useDispatch();
 
   const dropHandler = () => {
     setDrop((prevDrop) => !prevDrop);
@@ -19,6 +20,10 @@ const MainNavigation = ({ showCartHandler }) => {
     showCartHandler(true);
     setDrop(false);
   };
+
+  useEffect(() => {
+    dispatch(getCartData());
+  }, [dispatch]);
 
   return (
     <>
