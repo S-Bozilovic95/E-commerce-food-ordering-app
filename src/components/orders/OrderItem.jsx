@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { updateCartItemAmount } from "../../api/cart/cart";
-import { getCartData } from "../../store/cartSlice";
+import { cartItemsList, getCartData } from "../../store/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteCartItem } from "../../api/cart/cart";
 
 const OrderItem = ({ singleMeal }) => {
-  const dispatch = useDispatch();
   const [updatedItem, setUpdatedItem] = useState({
-    id: singleMeal.id,
     name: singleMeal.name,
     description: singleMeal.description,
     amount: 1,
@@ -14,16 +12,30 @@ const OrderItem = ({ singleMeal }) => {
     image: singleMeal.image,
     category: singleMeal.category,
   });
+  const cartList = useSelector(cartItemsList);
+  const dispatch = useDispatch();
 
-  console.log(updatedItem);
-  const amountIncreaseHandler = async () => {
+  const amountIncreaseHandler = () => {
     setUpdatedItem((prevUpdatedItem) => ({
       ...prevUpdatedItem,
       amount: prevUpdatedItem.amount + 1,
       price: prevUpdatedItem.price + singleMeal.price,
     }));
+  };
+
+  const amountDecreaseHandler = () => {
+    if (updatedItem.amount > 1) {
+      setUpdatedItem((prevUpdatedItem) => ({
+        ...prevUpdatedItem,
+        amount: prevUpdatedItem.amount - 1,
+        price: prevUpdatedItem.price - singleMeal.price,
+      }));
+    }
+  };
+
+  const removeFromCartHandler = async (value) => {
     try {
-      await updateCartItemAmount(singleMeal.id, updatedItem);
+      await deleteCartItem(singleMeal.key);
       dispatch(getCartData());
     } catch (error) {
       console.log(error);
@@ -34,11 +46,12 @@ const OrderItem = ({ singleMeal }) => {
     <div>
       <div>
         <img src={singleMeal.image} alt="meal" />
-        <p>{singleMeal.name}</p>
-        <p>{singleMeal.price}</p>
-        <span>-</span>
-        <p>{singleMeal.amount}</p>
+        <p>{updatedItem.name}</p>
+        <p>{parseFloat(updatedItem.price).toFixed(2)}</p>
+        <span onClick={amountDecreaseHandler}>-</span>
+        <p>{updatedItem.amount}</p>
         <span onClick={amountIncreaseHandler}>+</span>
+        <button onClick={removeFromCartHandler}>delete</button>
       </div>
     </div>
   );

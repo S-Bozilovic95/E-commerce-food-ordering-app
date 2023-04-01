@@ -23,22 +23,6 @@ const cartSlice = createSlice({
       );
       state.cartItemsList = filteredCartList;
     },
-    addToCart(state, action) {
-      const existingItem = state.cartItemsList.find(
-        (cartItem) => cartItem.id === action.payload.id
-      );
-
-      if (!existingItem) {
-        state.cartItemsList = [...state.cartItemsList, action.payload];
-      }
-
-      // else {
-      //   existingItem.amount = existingItem.amount + 1;
-      //   existingItem.price = parseFloat(
-      //     action.payload.price * existingItem.amount
-      //   ).toFixed(2);
-      // }
-    },
   },
 });
 
@@ -50,6 +34,7 @@ export const getCartData = () => {
       let newArray = [];
       for (const key in response.data) {
         newArray.push({
+          key: key,
           id: response.data[key].id,
           name: response.data[key].name,
           description: response.data[key].description,
