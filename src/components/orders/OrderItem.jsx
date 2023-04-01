@@ -2,6 +2,10 @@ import { useState } from "react";
 import { getCartData } from "../../store/cartSlice";
 import { useDispatch } from "react-redux";
 import { deleteCartItem } from "../../api/cart/cart";
+import classes from "./OrderItem.module.scss";
+import { FaEuroSign } from "react-icons/fa";
+import { MdOutlineRemoveShoppingCart } from "react-icons/md";
+import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
 const OrderItem = ({ singleMeal }) => {
   const [updatedItem, setUpdatedItem] = useState({
@@ -15,11 +19,13 @@ const OrderItem = ({ singleMeal }) => {
   const dispatch = useDispatch();
 
   const amountIncreaseHandler = () => {
-    setUpdatedItem((prevUpdatedItem) => ({
-      ...prevUpdatedItem,
-      amount: prevUpdatedItem.amount + 1,
-      price: prevUpdatedItem.price + singleMeal.price,
-    }));
+    if (updatedItem.amount < 25) {
+      setUpdatedItem((prevUpdatedItem) => ({
+        ...prevUpdatedItem,
+        amount: prevUpdatedItem.amount + 1,
+        price: prevUpdatedItem.price + singleMeal.price,
+      }));
+    }
   };
 
   const amountDecreaseHandler = () => {
@@ -42,16 +48,35 @@ const OrderItem = ({ singleMeal }) => {
   };
 
   return (
-    <div>
-      <div>
-        <img src={singleMeal.image} alt="meal" />
-        <p>{updatedItem.name}</p>
-        <p>{parseFloat(updatedItem.price).toFixed(2)}</p>
-        <span onClick={amountDecreaseHandler}>-</span>
-        <p>{updatedItem.amount}</p>
-        <span onClick={amountIncreaseHandler}>+</span>
-        <button onClick={removeFromCartHandler}>delete</button>
+    <div className={classes["order-item"]}>
+      <div className={classes["info-box"]}>
+        <h4 className={classes.title}>{updatedItem.name}</h4>
+        <p>
+          <i>
+            <FaEuroSign />
+          </i>
+          {parseFloat(updatedItem.price).toFixed(2)}
+        </p>
       </div>
+      <div className={classes.options}>
+        <img src={singleMeal.image} alt="meal" />
+        <div className={classes["options-box"]}>
+          <i onClick={amountDecreaseHandler}>
+            <AiOutlineMinus />
+          </i>
+          <div className={classes["amount-box"]}>
+            <p>{updatedItem.amount}</p>
+          </div>
+          <i onClick={amountIncreaseHandler}>
+            <AiOutlinePlus />
+          </i>
+        </div>
+      </div>
+      <button onClick={removeFromCartHandler}>
+        <i>
+          <MdOutlineRemoveShoppingCart />
+        </i>
+      </button>
     </div>
   );
 };

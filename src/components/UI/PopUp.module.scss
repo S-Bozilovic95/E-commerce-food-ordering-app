@@ -13,24 +13,19 @@
   top: 100px;
   left: 50%;
   transform: translateX(-50%) !important;
-  max-width: 800px;
+  max-width: 700px;
   width: 95%;
-  height: 600px;
+  height: 70vh;
   background-color: #f5f3f4;
   padding: 20px;
-  overflow-y: scroll;
   border-radius: 5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   z-index: 30;
   animation: slide-down 300ms ease-out forwards;
 }
 
-::-webkit-scrollbar {
-  display: none;
-}
-
 // responsive
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .pop-up {
     max-width: 100%;
   }
