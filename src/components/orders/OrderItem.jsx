@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { cartItemsList, getCartData } from "../../store/cartSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { getCartData } from "../../store/cartSlice";
+import { useDispatch } from "react-redux";
 import { deleteCartItem } from "../../api/cart/cart";
 
 const OrderItem = ({ singleMeal }) => {
@@ -12,7 +12,6 @@ const OrderItem = ({ singleMeal }) => {
     image: singleMeal.image,
     category: singleMeal.category,
   });
-  const cartList = useSelector(cartItemsList);
   const dispatch = useDispatch();
 
   const amountIncreaseHandler = () => {
