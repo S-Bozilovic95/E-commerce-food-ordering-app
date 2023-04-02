@@ -15,14 +15,6 @@ const cartSlice = createSlice({
     setLoading(state, action) {
       state.loading = action.payload;
     },
-
-    // privremeno
-    removeFromCart(state, action) {
-      const filteredCartList = state.cartItemsList.filter(
-        (item) => item.id !== action.payload.id
-      );
-      state.cartItemsList = filteredCartList;
-    },
   },
 });
 
@@ -37,7 +29,6 @@ export const getCartData = () => {
           key: key,
           id: response.data[key].id,
           name: response.data[key].name,
-          description: response.data[key].description,
           price: response.data[key].price,
           amount: 1,
           image: response.data[key].image,

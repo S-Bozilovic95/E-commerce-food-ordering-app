@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getCartData } from "../../store/cartSlice";
 import { useDispatch } from "react-redux";
 import { deleteCartItem } from "../../api/cart/cart";
@@ -6,12 +6,13 @@ import classes from "./OrderItem.module.scss";
 import { FaEuroSign } from "react-icons/fa";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
+import { setTotalPrice, updateOrderMeals } from "../../store/orderSlice";
 
 const OrderItem = ({ singleMeal }) => {
   const [updatedItem, setUpdatedItem] = useState({
+    id: singleMeal.id,
     name: singleMeal.name,
-    description: singleMeal.description,
-    amount: 1,
+    amount: singleMeal.amount,
     price: singleMeal.price,
     image: singleMeal.image,
     category: singleMeal.category,
@@ -36,6 +37,7 @@ const OrderItem = ({ singleMeal }) => {
         price: prevUpdatedItem.price - singleMeal.price,
       }));
     }
+    console.log(updatedItem.price);
   };
 
   const removeFromCartHandler = async (value) => {
@@ -46,6 +48,11 @@ const OrderItem = ({ singleMeal }) => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    dispatch(updateOrderMeals(updatedItem));
+    dispatch(setTotalPrice());
+  }, [updatedItem, dispatch]);
 
   return (
     <div className={classes["order-item"]}>

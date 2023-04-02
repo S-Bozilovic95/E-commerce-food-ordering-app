@@ -4,21 +4,35 @@ import { cartItemsList, getCartData } from "../../store/cartSlice";
 import PopUp from "../UI/PopUp";
 import OrderItem from "./OrderItem";
 import classes from "./OrderWindow.module.scss";
+import {
+  setOrderMeals,
+  setTotalPrice,
+  totalPrice,
+} from "../../store/orderSlice";
 
 const OrderWindow = ({ showCartHandler }) => {
   const cartList = useSelector(cartItemsList);
+  const totalSum = useSelector(totalPrice);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCartData());
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(setOrderMeals(cartList));
+    dispatch(setTotalPrice());
+  }, [dispatch, cartList]);
+
   return (
     <PopUp onClose={showCartHandler.bind(this, false)}>
       <div className={classes.orders}>
-        {cartList?.map((item) => (
-          <OrderItem key={item.id} singleMeal={item} />
-        ))}
+        <div className={classes["cart-list"]}>
+          {cartList?.map((item) => (
+            <OrderItem key={item.id} singleMeal={item} />
+          ))}
+        </div>
+        <div>{totalSum}</div>
       </div>
     </PopUp>
   );
